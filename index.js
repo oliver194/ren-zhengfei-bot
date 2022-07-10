@@ -50,4 +50,4 @@ client.on('messageCreate', (message) => {
     }
 });
 
-client.login('OTk1Njg5MTU4MjM4NTQzODgz.GkjVMB.x4QtYTTFrYcIOGpM2mC73k5rJs8lt_2Za8ACh4');
+client.login('OTk1Njg5MTU4MjM4NTQzODgz.GUhFQs.sUCI4aZ95gI9O-rHSua9Itr5caZ7WSCUWhH1pA');
