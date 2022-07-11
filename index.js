@@ -34,20 +34,32 @@ client.on('messageCreate', (message) => {
 
     // bot info
     if (message.content === `${prefix}botinfo`) {
+
         message.channel.send("Guilds: " + client.guilds.fetch(message.guildId));
         console.log(message.guildId);
-    }
 
+    }
     // cat.
     if (message.content === `${prefix}cat`) {
 
         if (message.channelId != "995813086965538866") {
-            message.channel.send("Won't send a cat pic outside of <#995813086965538866> to prevent flooding. ");
+            message.delete();
         } else {
             axios.get('https://aws.random.cat/meow.php').then(resp => { message.channel.send(resp.data.file) });
         }
         
     }
+
+    // repeats whatever the user says
+    if (message.content.startsWith === `${prefix}say`) {
+
+        var msgCnt = message.content.
+        console.log(msgCnt);
+        var sayCnt = msgCnt.split(' ');
+        console.log(sayCnt);
+
+    }
+
 });
 
-client.login('OTk1Njg5MTU4MjM4NTQzODgz.GUhFQs.sUCI4aZ95gI9O-rHSua9Itr5caZ7WSCUWhH1pA');
+client.login('OTk1Njg5MTU4MjM4NTQzODgz.GU369L.45kb3mQJO-NmQ7-55Luw0CUaGN6mNAklGQz7iU');
