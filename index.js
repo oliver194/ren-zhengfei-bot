@@ -1,12 +1,8 @@
 const axios = require('axios');
 const Discord = require("discord.js");
 const client = new Discord.Client({ intents: 32767 });
-const r2 = require('r2');
 
-// other vars
-const CAT_API_URL   = "https://api.thecatapi.com/";
-const CAT_API_KEY   = "4c5fa1a6-51ae-44b7-85a5-4cf819d34e20"
-
+var CAT_IMAGES_CHANNEL = "YOUR_CHANNEL_ID";
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -42,7 +38,7 @@ client.on('messageCreate', (message) => {
     // cat.
     if (message.content === `${prefix}cat`) {
 
-        if (message.channelId != "995813086965538866") {
+        if (message.channelId != CAT_IMAGES_CHANNEL) {
             message.delete();
         } else {
             axios.get('https://aws.random.cat/meow.php').then(resp => { message.channel.send(resp.data.file) });
@@ -62,4 +58,4 @@ client.on('messageCreate', (message) => {
 
 });
 
-client.login('OTk1Njg5MTU4MjM4NTQzODgz.GU369L.45kb3mQJO-NmQ7-55Luw0CUaGN6mNAklGQz7iU');
+client.login('YOUR_TOKEN_HERE');
