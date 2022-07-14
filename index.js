@@ -64,6 +64,17 @@ client.on('messageCreate', (message) => {
         }
 
     }
+    
+    // dog facts
+    if (message.content === `${prefix}dogfact`) {
+        
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
+            message.delete();
+        } else {
+            axios.get('https://dog-api.kinduff.com/api/facts'.then(resp => { message.channel.send(resp.data.facts[0]) });
+        }
+        
+    }
 
     // dog too
     if (message.content === `${prefix}dog`) {
