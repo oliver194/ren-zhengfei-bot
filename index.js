@@ -2,10 +2,18 @@ const axios = require('axios');
 const Discord = require("discord.js");
 const client = new Discord.Client({ intents: 32767 });
 
-var CAT_IMAGES_CHANNEL = "YOUR_CHANNEL_ID";
+var ANIMAL_IMAGES_CHANNEL = process.env.ANIMAL_CHANNEL_ID;
+var TOKEN = process.env.DISCORD_TOKEN;
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
+
+    console.log(
+        "Currently set variables:\n" +
+        "ANIMAL_CHANNEL_ID: " + ANIMAL_IMAGES_CHANNEL + "\n" +
+        "TOKEN:" + TOKEN
+    )
+
 });
 
 client.on('interactionCreate', async interaction => {
@@ -38,13 +46,88 @@ client.on('messageCreate', (message) => {
     // cat.
     if (message.content === `${prefix}cat`) {
 
-        if (message.channelId != CAT_IMAGES_CHANNEL) {
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
             message.delete();
         } else {
             axios.get('https://aws.random.cat/meow.php').then(resp => { message.channel.send(resp.data.file) });
         }
         
     }
+
+    // cat facts
+    if (message.content === `${prefix}catfact`) {
+
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
+            message.delete();
+        } else {
+            axios.get('https://catfact.ninja/fact').then(resp => { message.channel.send(resp.data.fact) });
+        }
+
+    }
+
+    // dog too
+    if (message.content === `${prefix}dog`) {
+
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
+            message.delete();
+        } else {
+            axios.get('https://dog.ceo/api/breeds/image/random').then(resp => { message.channel.send(resp.data.message) });
+        }
+        
+    }
+
+    // fox becuse why not
+    if (message.content === `${prefix}fox`) {
+
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
+            message.delete();
+        } else {
+            axios.get('https://randomfox.ca/floof/').then(resp => { message.channel.send(resp.data.image) });
+        }
+        
+    }
+
+    // quack quack
+    if (message.content === `${prefix}duck`) {
+
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
+            message.delete();
+        } else {
+            axios.get('https://random-d.uk/api/random').then(resp => { message.channel.send(resp.data.url) });
+        }
+        
+    }
+
+    // uhh lizard
+    if (message.content === `${prefix}lizard`) {
+
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
+            message.delete();
+        } else {
+            axios.get('https://nekos.life/api/v2/img/lizard').then(resp => { message.channel.send(resp.data.url) });
+        }
+        
+    }
+
+    // shiba uwu
+    if (message.content === `${prefix}shiba`) {
+
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
+            message.delete();
+        } else {
+            axios.get('http://shibe.online/api/shibes').then(resp => { message.channel.send(resp.data[0]) });
+        }
+        
+    }
+
+    // hentai
+    if (message.content === `${prefix}neko`) {
+
+        axios.get('https://nekos.life/api/v2/img/neko').then(resp => { message.channel.send(resp.data.url) });
+
+    }
+
+
 
     // repeats whatever the user says
     if (message.content.startsWith === `${prefix}say`) {
@@ -58,4 +141,4 @@ client.on('messageCreate', (message) => {
 
 });
 
-client.login('YOUR_TOKEN_HERE');
+client.login(TOKEN);
