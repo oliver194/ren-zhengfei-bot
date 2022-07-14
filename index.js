@@ -43,6 +43,7 @@ client.on('messageCreate', (message) => {
         console.log(message.guildId);
 
     }
+    
     // cat.
     if (message.content === `${prefix}cat`) {
 
@@ -53,6 +54,15 @@ client.on('messageCreate', (message) => {
         }
         
     }
+    
+    // kangaroo images
+    if (message.content === `${prefix}kangaroo`) {
+
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
+            message.delete();
+        } else {
+            axios.get('https://some-random-api.ml/img/kangaroo').then(resp => { message.channel.send(resp.data.link) });
+        }
 
     // cat facts
     if (message.content === `${prefix}catfact`) {
@@ -75,7 +85,29 @@ client.on('messageCreate', (message) => {
         }
         
     }
-
+    
+    // panda facts
+    if (message.content === `${prefix}pfact`) {
+        
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
+            message.delete();
+        } else {
+            axios.get('https://some-random-api.ml/facts/panda').then(resp => { message.channel.send(resp.data.fact) });
+        }
+        
+    }
+    
+    // bird facts
+    if (message.content === `${prefix}pfact`) {
+        
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
+            message.delete();
+        } else {
+            axios.get('https://some-random-api.ml/facts/bird').then(resp => { message.channel.send(resp.data.fact) });
+        }
+        
+    }
+        
     // dog too
     if (message.content === `${prefix}dog`) {
 
