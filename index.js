@@ -71,7 +71,7 @@ client.on('messageCreate', (message) => {
         if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
             message.delete();
         } else {
-            axios.get('https://dog-api.kinduff.com/api/facts'.then(resp => { message.channel.send(resp.data.facts[0]) });
+            axios.get('https://dog-api.kinduff.com/api/facts').then(resp => { message.channel.send(resp.data.facts[0]) });
         }
         
     }
