@@ -99,7 +99,7 @@ client.on('messageCreate', (message) => {
     }
     
     // bird facts
-    if (message.content === `${prefix}pfact`) {
+    if (message.content === `${prefix}birdfact`) {
         
         if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
             message.delete();
