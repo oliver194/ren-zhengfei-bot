@@ -4,7 +4,7 @@
 ## Setup instructions
 1. git clone the repo: `git clone https://github.com/ValerieOSS/ren-zhengfei-bot.git`
 2. Install Node.JS from [here (Windows/MacOS)](https://nodejs.org/en/download/), or from your Linux package manager (pkg usually named `node`. Also install `npm`)
-3. Install required dependendies via `npm install --save discord.js`
+3. Install required dependendies via `npm install`
 4. Set the required environment variables:
 - Variabless:
   - ANIMAL_CHANNEL_ID: Channel ID for all the Animal API commands
