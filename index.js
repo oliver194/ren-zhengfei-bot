@@ -63,6 +63,7 @@ client.on('messageCreate', (message) => {
         } else {
             axios.get('https://some-random-api.ml/img/kangaroo').then(resp => { message.channel.send(resp.data.link) });
         }
+    }
 
     // cat facts
     if (message.content === `${prefix}catfact`) {
