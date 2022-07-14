@@ -131,6 +131,17 @@ client.on('messageCreate', (message) => {
         
     }
 
+    // red pandasssssssssssssssssss
+    if (message.content === `${prefix}rpanda`) {
+
+        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
+            message.delete();
+        } else {
+            axios.get('https://some-random-api.ml/img/red_panda').then(resp => { message.channel.send(resp.data.link) });
+        }
+        
+    }
+
     // hentai
     if (message.content === `${prefix}neko`) {
 
