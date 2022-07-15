@@ -1,7 +1,9 @@
 const axios = require('axios');
 const Discord = require("discord.js");
 const client = new Discord.Client({ intents: 32767 });
+const { MessageEmbed } = require('discord.js');
 
+var version = "1.1.3-b1";
 var ANIMAL_IMAGES_CHANNEL = process.env.ANIMAL_CHANNEL_ID;
 var TOKEN = process.env.DISCORD_TOKEN;
 
@@ -35,34 +37,36 @@ client.on('messageCreate', (message) => {
         message.channel.send("test");
         message.react("🤩");
     }
-
+    
     // bot info
     if (message.content === `${prefix}botinfo`) {
 
-        message.channel.send("Guilds: " + client.guilds.fetch(message.guildId));
-        console.log(message.guildId);
+        const BotInfoEmbed = new MessageEmbed()
+            .setColor('584dff')
+            .setTitle('About Ren Zhengfei')
+            .setDescription('This bot was made by Val and oliver193.\nSource available on GitHub')
+            .setTimestamp()
+            .setFooter({ text: 'Version ' + version });
+        message.channel.send({ embeds: [BotInfoEmbed] }); 
 
     }
     
-    // cat.
+    // cat image
     if (message.content === `${prefix}cat`) {
 
         if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
             message.delete();
         } else {
-            axios.get('https://aws.random.cat/meow.php').then(resp => { message.channel.send(resp.data.file) });
+            axios.get('https://aws.random.cat/meow').then(resp => { const CatImgEmbed = new MessageEmbed()
+                .setColor('584dff')
+                .setTitle('Cat image')
+                .setImage(resp.data.file)
+                .setTimestamp()
+                .setFooter({ text: 'Powered by aws.random.cat'});
+            message.channel.send({ embeds: [CatImgEmbed] });
+            });
         }
         
-    }
-    
-    // kangaroo images
-    if (message.content === `${prefix}kangaroo`) {
-
-        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
-            message.delete();
-        } else {
-            axios.get('https://some-random-api.ml/img/kangaroo').then(resp => { message.channel.send(resp.data.link) });
-        }
     }
 
     // cat facts
@@ -71,51 +75,32 @@ client.on('messageCreate', (message) => {
         if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
             message.delete();
         } else {
-            axios.get('https://catfact.ninja/fact').then(resp => { message.channel.send(resp.data.fact) });
+            axios.get('https://catfact.ninja/fact').then(resp => { const CatFactEmbed = new MessageEmbed()
+                .setColor('584dff')
+                .setTitle('Cat fact')
+                .setDescription(resp.data.fact)
+                .setTimestamp()
+                .setFooter({ text: 'Powered by catfact.ninja'});
+            message.channel.send({ embeds: [CatFactEmbed] });
+            });
         }
 
     }
-    
-    // dog facts
-    if (message.content === `${prefix}dogfact`) {
-        
-        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
-            message.delete();
-        } else {
-            axios.get('https://dog-api.kinduff.com/api/facts').then(resp => { message.channel.send(resp.data.facts[0]) });
-        }
-        
-    }
-    
-    // panda facts
-    if (message.content === `${prefix}pfact`) {
-        
-        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
-            message.delete();
-        } else {
-            axios.get('https://some-random-api.ml/facts/panda').then(resp => { message.channel.send(resp.data.fact) });
-        }
-        
-    }
-    
-    // bird facts
-    if (message.content === `${prefix}birdfact`) {
-        
-        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
-            message.delete();
-        } else {
-            axios.get('https://some-random-api.ml/facts/bird').then(resp => { message.channel.send(resp.data.fact) });
-        }
-        
-    }
-        
+
     // dog too
     if (message.content === `${prefix}dog`) {
 
         if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
             message.delete();
         } else {
-            axios.get('https://dog.ceo/api/breeds/image/random').then(resp => { message.channel.send(resp.data.message) });
+            axios.get('https://dog.ceo/api/breeds/image/random').then(resp => { const DogImgEmbed = new MessageEmbed()
+                .setColor('584dff')
+                .setTitle('Dog image')
+                .setImage(resp.data.message)
+                .setTimestamp()
+                .setFooter({ text: 'Powered by dog.ceo'});
+            message.channel.send({ embeds: [DogImgEmbed] });
+            });
         }
         
     }
@@ -126,7 +111,14 @@ client.on('messageCreate', (message) => {
         if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
             message.delete();
         } else {
-            axios.get('https://randomfox.ca/floof/').then(resp => { message.channel.send(resp.data.image) });
+            axios.get('https://randomfox.ca/floof/').then(resp => { const FoxImgEmbed = new MessageEmbed()
+                .setColor('584dff')
+                .setTitle('Fox image')
+                .setImage(resp.data.image)
+                .setTimestamp()
+                .setFooter({ text: 'Powered by randomfox.ca'});
+            message.channel.send({ embeds: [FoxImgEmbed] });
+            });
         }
         
     }
@@ -137,7 +129,14 @@ client.on('messageCreate', (message) => {
         if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
             message.delete();
         } else {
-            axios.get('https://random-d.uk/api/random').then(resp => { message.channel.send(resp.data.url) });
+            axios.get('https://random-d.uk/api/random').then(resp => { const DuckImgEmbed = new MessageEmbed()
+                .setColor('584dff')
+                .setTitle('Duck image')
+                .setImage(resp.data.url)
+                .setTimestamp()
+                .setFooter({ text: 'Powered by random-d.uk'});
+            message.channel.send({ embeds: [DuckImgEmbed] });
+            });
         }
         
     }
@@ -148,7 +147,14 @@ client.on('messageCreate', (message) => {
         if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
             message.delete();
         } else {
-            axios.get('https://nekos.life/api/v2/img/lizard').then(resp => { message.channel.send(resp.data.url) });
+            axios.get('https://nekos.life/api/v2/img/lizard').then(resp => { const LizardImgEmbed = new MessageEmbed()
+                .setColor('584dff')
+                .setTitle('Lizard image')
+                .setImage(resp.data.url)
+                .setTimestamp()
+                .setFooter({ text: 'Powered by nekos.life'});
+            message.channel.send({ embeds: [LizardImgEmbed] });
+            });
         }
         
     }
@@ -159,26 +165,30 @@ client.on('messageCreate', (message) => {
         if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
             message.delete();
         } else {
-            axios.get('http://shibe.online/api/shibes').then(resp => { message.channel.send(resp.data[0]) });
-        }
-        
-    }
-
-    // red pandasssssssssssssssssss
-    if (message.content === `${prefix}rpanda`) {
-
-        if (message.channelId != ANIMAL_IMAGES_CHANNEL) {
-            message.delete();
-        } else {
-            axios.get('https://some-random-api.ml/img/red_panda').then(resp => { message.channel.send(resp.data.link) });
+            axios.get('https://shibe.online/api/shibes').then(resp => { const ShibaImgEmbed = new MessageEmbed()
+                .setColor('584dff')
+                .setTitle('Shiba image')
+                .setImage(resp.data.url)
+                .setTimestamp()
+                .setFooter({ text: 'Powered by shibe.online'});
+            message.channel.send({ embeds: [ShibaImgEmbed] });
+            });
         }
         
     }
 
     // hentai
     if (message.content === `${prefix}neko`) {
+        
 
-        axios.get('https://nekos.life/api/v2/img/neko').then(resp => { message.channel.send(resp.data.url) });
+        axios.get('https://nekos.life/api/v2/img/neko').then(resp => { const NekoImgEmbed = new MessageEmbed()
+            .setColor('584dff')
+            .setTitle('Neko image')
+            .setImage(resp.data.url)
+            .setTimestamp()
+            .setFooter({ text: 'Powered by nekos.life'});
+        message.channel.send({ embeds: [NekoImgEmbed] });
+            });
 
     }
 
